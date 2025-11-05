@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> The SecObserve repositories have been moved from the MaibornWolff organization to their own SecObserve organization. Even though all links to the previous repository location are automatically redirected to the new location, we strongly recommend updating any existing links to the new repository URL.
+
+
 # SecObserve GitHub actions and GitLab CI templates
 
 SecObserve gathers results about potential security flaws from various vulnerability scanning tools and makes them available for assessment and reporting.
