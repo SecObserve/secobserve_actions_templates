@@ -1,6 +1,6 @@
 name: 'SecObserve Check Security Gate'
 description: 'Checks SecObserve security gate for a product'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_api_base_url:

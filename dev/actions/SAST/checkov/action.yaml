@@ -1,6 +1,6 @@
 name: 'SecObserve Checkov'
 description: 'Scans infrastructure code for vulnerabilities with Checkov'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

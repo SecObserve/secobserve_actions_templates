@@ -1,6 +1,6 @@
 name: 'SecObserve Trivy config'
 description: 'Scans infrastructure code for vulnerabilities with Trivy'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

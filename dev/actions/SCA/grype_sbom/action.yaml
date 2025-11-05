@@ -1,6 +1,6 @@
 name: 'SecObserve Grype SBOM'
 description: 'Scans CycloneDX SBOMs for vulnerabilities with Grype'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

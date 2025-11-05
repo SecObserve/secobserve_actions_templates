@@ -1,6 +1,6 @@
 name: 'SecObserve CryptoLyzer'
 description: 'Scans TLS encryption for vulnerabilities with CryptoLyzer'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

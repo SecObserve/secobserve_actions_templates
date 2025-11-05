@@ -1,6 +1,6 @@
 name: 'SecObserve Semgrep'
 description: 'Scans source code for vulnerabilities with Semgrep'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:
