@@ -1,6 +1,6 @@
 name: 'SecObserve upload observations'
 description: 'Upload results of vulnerability scanner into SecObserve'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_api_base_url:

@@ -1,6 +1,6 @@
 name: 'SecObserve ESLint'
 description: 'Scans Javascript/Typescript code for vulnerabilities with ESLint'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

@@ -1,6 +1,6 @@
 name: 'SecObserve ZAP'
 description: 'Scans web sites and APIs with ZAP'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

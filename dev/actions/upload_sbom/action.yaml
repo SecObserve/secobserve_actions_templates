@@ -1,6 +1,6 @@
 name: 'SecObserve upload SBOM'
 description: 'Upload SBOM into SecObserve'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_api_base_url:

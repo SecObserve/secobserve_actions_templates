@@ -1,6 +1,6 @@
 name: 'SecObserve Trivy filesystem'
 description: 'Scans a filesystem for vulnerabilities with Trivy'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:

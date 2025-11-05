@@ -1,6 +1,6 @@
 name: 'SecObserve Bandit'
 description: 'Scans Python code for vulnerabilities with Bandit'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:
