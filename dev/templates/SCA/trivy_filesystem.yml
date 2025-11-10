@@ -1,6 +1,6 @@
 .trivy_filesystem:
   image:
-    name: docker.io/maibornwolff/secobserve-scanners:dev
+    name: ghcr.io/secobserve/secobserve-scanners:dev
   stage: test
   variables:
     FURTHER_PARAMETERS: ""
