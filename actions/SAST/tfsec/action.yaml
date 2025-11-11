@@ -46,7 +46,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2025_10'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2025_11'
   entrypoint: '/entrypoints/entrypoint_tfsec.sh'
   env:
     TARGET: ${{ inputs.target }}
