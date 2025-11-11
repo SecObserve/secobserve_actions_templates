@@ -1,6 +1,6 @@
 .kics:
   image:
-    name: docker.io/maibornwolff/secobserve-scanners:2025_10
+    name: ghcr.io/secobserve/secobserve-scanners:2025_10
   stage: test
   variables:
     FURTHER_PARAMETERS: ""

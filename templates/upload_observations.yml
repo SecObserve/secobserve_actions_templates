@@ -1,6 +1,6 @@
 .importer:
   image:
-    name: docker.io/maibornwolff/secobserve-scanners:2025_10
+    name: ghcr.io/secobserve/secobserve-scanners:2025_10
   stage: upload
   variables:
     GIT_STRATEGY: none

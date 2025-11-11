@@ -2,6 +2,10 @@
 > The SecObserve repositories have been moved from the MaibornWolff organization to their own SecObserve organization. Even though all links to the previous repository location are automatically redirected to the new location, we strongly recommend updating any existing links to the new repository URL.
 >
 > All includes of GitHub actions and GitLab templates have to be changed from `MaibornWolff/secobserve_actions_templates/...` to `SecObserve/secobserve_actions_templates/...`.
+>
+> The location of the Docker images has been changed with release 2025_11, they are now stored in a GitHub container registry:
+> - ghcr.io/secobserve/secobserve-scanners
+> - ghcr.io/secobserve/secobserve-scanners-zap
 
 
 # SecObserve GitHub actions and GitLab CI templates
