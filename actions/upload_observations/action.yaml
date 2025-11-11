@@ -1,6 +1,6 @@
 name: 'SecObserve upload observations'
 description: 'Upload results of vulnerability scanner into SecObserve'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_api_base_url:
@@ -30,7 +30,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:2025_10'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2025_11'
   entrypoint: 'file_upload_observations.sh'
   env:
     SO_API_BASE_URL: ${{ inputs.so_api_base_url }}

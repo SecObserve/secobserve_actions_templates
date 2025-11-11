@@ -1,6 +1,6 @@
 name: 'SecObserve Grype image'
 description: 'Scans Docker images for vulnerabilities with Grype'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:
@@ -45,7 +45,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:2025_10'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2025_11'
   entrypoint: '/entrypoints/entrypoint_grype_image.sh'
   env:
     TARGET: ${{ inputs.target }}

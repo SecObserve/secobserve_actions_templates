@@ -1,6 +1,6 @@
 name: 'SecObserve Importer'
 description: 'Import results of vulnerability scanner into SecObserve'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_upload:
@@ -41,7 +41,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:dev'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:dev'
   entrypoint: 'file_upload_observations.sh'
   env:
     SO_UPLOAD: ${{ inputs.so_upload }}

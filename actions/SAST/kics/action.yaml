@@ -1,6 +1,6 @@
 name: 'SecObserve KICS'
 description: 'Scans infrastructure code for vulnerabilities with KICS'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:
@@ -50,7 +50,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:2025_10'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2025_11'
   entrypoint: '/entrypoints/entrypoint_kics.sh'
   env:
     TARGET: ${{ inputs.target }}

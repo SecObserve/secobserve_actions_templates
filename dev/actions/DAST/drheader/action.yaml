@@ -1,6 +1,6 @@
 name: 'SecObserve DrHeader'
 description: 'Scans HTTP headers for vulnerabilities with DrHeader'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   target:
@@ -46,7 +46,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:dev'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:dev'
   entrypoint: '/entrypoints/entrypoint_drheader.sh'
   env:
     TARGET: ${{ inputs.target }}

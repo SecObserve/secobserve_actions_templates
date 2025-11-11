@@ -1,3 +1,13 @@
+> [!IMPORTANT]
+> The SecObserve repositories have been moved from the MaibornWolff organization to their own SecObserve organization. Even though all links to the previous repository location are automatically redirected to the new location, we strongly recommend updating any existing links to the new repository URL.
+>
+> All includes of GitHub actions and GitLab templates have to be changed from `MaibornWolff/secobserve_actions_templates/...` to `SecObserve/secobserve_actions_templates/...`.
+>
+> The location of the Docker images has been changed with release 2025_11, they are now stored in a GitHub container registry:
+> - ghcr.io/secobserve/secobserve-scanners
+> - ghcr.io/secobserve/secobserve-scanners-zap
+
+
 # SecObserve GitHub actions and GitLab CI templates
 
 SecObserve gathers results about potential security flaws from various vulnerability scanning tools and makes them available for assessment and reporting.
@@ -12,7 +22,7 @@ It consists of 2 major components:
 
 * **Vulnerability management system SecObserve:** SecObserve provides the development team with an overview of the results of all vulnerability scans for their project, which can be easily filtered and sorted. In the detailed view, the results are displayed uniformly with a wealth of information, regardless of which vulnerability scanner generated them.
 
-  The sources of the vulnerability management system can be found in [https://github.com/MaibornWolff/SecObserve](https://github.com/MaibornWolff/SecObserve).
+  The sources of the vulnerability management system can be found in [https://github.com/SecObserve/SecObserve](https://github.com/SecObserve/SecObserve).
 
 ## Available actions and templates
 
@@ -36,7 +46,7 @@ All GitHub actions and GitLab CI templates use a pre-built Docker image that con
 
 ## Documentation
 
-See [GitHub actions and GitLab CI templates](https://maibornwolff.github.io/SecObserve/integrations/github_actions_and_templates) for the full documentation how to use the actions and templates.
+See [GitHub actions and GitLab CI templates](https://secobserve.github.io/SecObserve/integrations/github_actions_and_templates) for the full documentation how to use the actions and templates.
 
 ## Code of Conduct
 

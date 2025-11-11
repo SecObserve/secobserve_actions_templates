@@ -1,6 +1,6 @@
 name: 'SecObserve Check Security Gate'
 description: 'Checks SecObserve security gate for a product'
-author: 'MaibornWolff'
+author: 'SecObserve'
 
 inputs:
   so_api_base_url:
@@ -15,7 +15,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://docker.io/maibornwolff/secobserve-scanners:dev'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:dev'
   entrypoint: 'check_security_gate.sh'
   env:
     SO_API_BASE_URL: ${{ inputs.so_api_base_url }}

@@ -12,9 +12,9 @@ COPY docker/requirements_checkov.txt .
 RUN pip wheel --wheel-dir /usr/src/app/wheels_checkov -r ./requirements_checkov.txt
 
 # Go build stage for KICS
-FROM golang:1.25.1-alpine AS go-build-stage
+FROM golang:1.25.4-alpine AS go-build-stage
 
-ARG KICS_VERSION=2.1.14
+ARG KICS_VERSION=2.1.15
 
 # Install kics from GitHub
 WORKDIR /usr/local/kics
@@ -26,26 +26,25 @@ RUN wget --no-verbose https://github.com/Checkmarx/kics/archive/refs/tags/v${KIC
 # Python run stage
 FROM python:3.13-alpine AS python-run-stage
 
-ARG GITLEAKS_VERSION=8.28.0
-ARG GRYPE_VERSION=0.100.0
-ARG KICS_VERSION=2.1.14
-ARG TRIVY_VERSION=0.67.0
+ARG GITLEAKS_VERSION=8.29.0
+ARG GRYPE_VERSION=0.103.0
+ARG KICS_VERSION=2.1.15
+ARG TRIVY_VERSION=0.67.2
 ARG TFSEC_VERSION=1.28.14
 
 ARG CREATED
 ARG REVISION
 ARG VERSION
 
-LABEL org.opencontainers.image.authors="stefan.fleckenstein@maibornwolff.de"
 LABEL org.opencontainers.image.created=${CREATED}
 LABEL org.opencontainers.image.description="SecObserve is an open source vulnerability and license management system for software development teams."
-LABEL org.opencontainers.image.documentation="https://maibornwolff.github.io/SecObserve/integrations/github_actions_and_templates/"
+LABEL org.opencontainers.image.documentation="https://secobserve.github.io/SecObserve/integrations/github_actions_and_templates/"
 LABEL org.opencontainers.image.licenses="BSD3-Clause"
 LABEL org.opencontainers.image.revision=${REVISION}
-LABEL org.opencontainers.image.source="https://github.com/MaibornWolff/secobserve_actions_templates"
+LABEL org.opencontainers.image.source="https://github.com/SecObserve/secobserve_actions_templates"
 LABEL org.opencontainers.image.title="SecObserve vulnerability scanners"
-LABEL org.opencontainers.image.url="https://github.com/MaibornWolff/secobserve_actions_templates"
-LABEL org.opencontainers.image.vendor="MaibornWolff GmbH"
+LABEL org.opencontainers.image.url="https://github.com/SecObserve/secobserve_actions_templates"
+LABEL org.opencontainers.image.vendor="SecObserve"
 LABEL org.opencontainers.image.version=${VERSION}
 
 # Install openssl-dev because libcrypto is needed for CryptoLyzer
