@@ -1,6 +1,6 @@
 .trivy_filesystem:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners:2025_12
+    name: ghcr.io/secobserve/secobserve-scanners:2026_01
   stage: test
   variables:
     FURTHER_PARAMETERS: ""

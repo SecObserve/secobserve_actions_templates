@@ -1,6 +1,6 @@
 .importer:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners:2025_12
+    name: ghcr.io/secobserve/secobserve-scanners:2026_01
   stage: upload
   variables:
     GIT_STRATEGY: none
