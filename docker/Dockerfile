@@ -12,7 +12,7 @@ COPY docker/requirements_checkov.txt .
 RUN pip wheel --wheel-dir /usr/src/app/wheels_checkov -r ./requirements_checkov.txt
 
 # Go build stage for KICS
-FROM golang:1.25.6-alpine AS go-build-stage
+FROM golang:1.26.0-alpine AS go-build-stage
 
 ARG KICS_VERSION=2.1.19
 
@@ -29,7 +29,7 @@ FROM python:3.13-alpine AS python-run-stage
 ARG GITLEAKS_VERSION=8.30.0
 ARG GRYPE_VERSION=0.106.0
 ARG KICS_VERSION=2.1.19
-ARG TRIVY_VERSION=0.68.2
+ARG TRIVY_VERSION=0.69.1
 ARG TFSEC_VERSION=1.28.14
 
 ARG CREATED
