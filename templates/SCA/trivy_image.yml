@@ -1,6 +1,6 @@
 .trivy_image:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners:2026_01
+    name: ghcr.io/secobserve/secobserve-scanners:2026_02
   stage: test
   variables:
     GIT_STRATEGY: none
