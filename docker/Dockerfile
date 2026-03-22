@@ -1,5 +1,5 @@
 # Python build stage
-FROM python:3.13-alpine AS python-build-stage
+FROM python:3.14-alpine AS python-build-stage
 
 # Install gcc to be able to compile wheels for python packages
 RUN apk add --no-cache gcc musl-dev python3-dev
@@ -12,9 +12,9 @@ COPY docker/requirements_checkov.txt .
 RUN pip wheel --wheel-dir /usr/src/app/wheels_checkov -r ./requirements_checkov.txt
 
 # Go build stage for KICS
-FROM golang:1.26.0-alpine AS go-build-stage
+FROM golang:1.26.1-alpine AS go-build-stage
 
-ARG KICS_VERSION=2.1.19
+ARG KICS_VERSION=2.1.20
 
 # Install kics from GitHub
 WORKDIR /usr/local/kics
@@ -24,12 +24,12 @@ RUN wget --no-verbose https://github.com/Checkmarx/kics/archive/refs/tags/v${KIC
     && go build -o ./bin/kics cmd/console/main.go
 
 # Python run stage
-FROM python:3.13-alpine AS python-run-stage
+FROM python:3.14-alpine AS python-run-stage
 
-ARG GITLEAKS_VERSION=8.30.0
-ARG GRYPE_VERSION=0.106.0
-ARG KICS_VERSION=2.1.19
-ARG TRIVY_VERSION=0.69.1
+ARG GITLEAKS_VERSION=8.30.1
+ARG GRYPE_VERSION=0.110.0
+ARG KICS_VERSION=2.1.20
+ARG TRIVY_VERSION=0.69.3
 ARG TFSEC_VERSION=1.28.14
 
 ARG CREATED
@@ -66,8 +66,8 @@ RUN python3 -m venv .venv \
 	&& rm -rf /wheels_checkov/ && rm -rf /tmp \
     && deactivate \
     # Hack because Python's find_library doesn't work on Alpine
-    && sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" .venv/lib/python3.13/site-packages/oscrypto/_openssl/_libcrypto_cffi.py \
-    && sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" .venv/lib/python3.13/site-packages/oscrypto/_openssl/_libcrypto_ctypes.py
+    && sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" .venv/lib/python3.14/site-packages/oscrypto/_openssl/_libcrypto_cffi.py \
+    && sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" .venv/lib/python3.14/site-packages/oscrypto/_openssl/_libcrypto_ctypes.py
 
 # copy and install precompiled DrHeader library and rules
 COPY docker/drheader/drheader-1.7.0-py2.py3-none-any.whl docker/drheader/rules.yml ./

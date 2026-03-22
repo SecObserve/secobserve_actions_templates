@@ -1,11 +1,11 @@
 # Bandit
 # ----------------------------------------------------------------
-bandit==1.9.3  # https://github.com/PyCQA/bandit
+bandit==1.9.4  # https://github.com/PyCQA/bandit
 bandit-sarif-formatter==1.1.1  # https://github.com/microsoft/bandit-sarif-formatter
 
 # Semgrep
 # ----------------------------------------------------------------
-semgrep==1.152.0  # https://github.com/returntocorp/semgrep
+semgrep==1.156.0  # https://github.com/returntocorp/semgrep
 
 # CryptoLyzer
 # ----------------------------------------------------------------
