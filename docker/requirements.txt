@@ -13,7 +13,7 @@ CryptoLyzer==1.0.2  # https://gitlab.com/coroner/cryptolyzer
 
 # Importer
 # ----------------------------------------------------------------
-requests==2.32.5  # https://github.com/psf/requests
+requests==2.33.0  # https://github.com/psf/requests
 
 # Vulnerability Scanner
 # ----------------------------------------------------------------
