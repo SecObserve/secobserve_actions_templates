@@ -1,5 +1,5 @@
 # Python run stage
-FROM zaproxy/zap-stable:2.15.0
+FROM zaproxy/zap-stable:2.17.0
 
 ARG CREATED
 ARG REVISION
@@ -19,7 +19,7 @@ LABEL org.opencontainers.image.version=${VERSION}
 
 # Install importer
 COPY importer/ /usr/local/importer/
-RUN pip install --no-cache-dir -r /usr/local/importer/requirements.txt
+RUN pip install --no-cache-dir -r /usr/local/importer/requirements.txt --break-system-packages
 
 # Copy entrypoints and set PATH
 WORKDIR /entrypoints
