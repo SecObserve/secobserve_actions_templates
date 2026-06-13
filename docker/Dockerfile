@@ -12,7 +12,7 @@ COPY docker/requirements_checkov.txt .
 RUN pip wheel --wheel-dir /usr/src/app/wheels_checkov -r ./requirements_checkov.txt
 
 # Go build stage for KICS
-FROM golang:1.26.2-alpine AS go-build-stage
+FROM golang:1.26.4-alpine AS go-build-stage
 
 ARG KICS_VERSION=2.1.20
 
@@ -27,9 +27,9 @@ RUN wget --no-verbose https://github.com/Checkmarx/kics/archive/refs/tags/v${KIC
 FROM python:3.14-alpine AS python-run-stage
 
 ARG GITLEAKS_VERSION=8.30.1
-ARG GRYPE_VERSION=0.111.1
+ARG GRYPE_VERSION=0.114.0
 ARG KICS_VERSION=2.1.20
-ARG TRIVY_VERSION=0.70.0
+ARG TRIVY_VERSION=0.71.0
 ARG TFSEC_VERSION=1.28.14
 
 ARG CREATED
