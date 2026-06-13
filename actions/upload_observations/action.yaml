@@ -30,7 +30,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_04'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_06'
   entrypoint: 'file_upload_observations.sh'
   env:
     SO_API_BASE_URL: ${{ inputs.so_api_base_url }}

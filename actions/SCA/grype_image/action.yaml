@@ -45,7 +45,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_04'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_06'
   entrypoint: '/entrypoints/entrypoint_grype_image.sh'
   env:
     TARGET: ${{ inputs.target }}

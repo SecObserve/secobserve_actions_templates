@@ -1,6 +1,6 @@
 .drheader:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners:2026_04
+    name: ghcr.io/secobserve/secobserve-scanners:2026_06
   stage: post_deploy
   variables:
     GIT_STRATEGY: none
