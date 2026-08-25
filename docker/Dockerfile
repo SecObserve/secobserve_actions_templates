@@ -51,19 +51,21 @@ LABEL org.opencontainers.image.version=${VERSION}
 RUN apk add --no-cache openssl-dev
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
-# copy python dependency wheels from python-build-stage
-COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
-COPY --from=python-build-stage /usr/src/app/wheels_checkov  /wheels_checkov/
-# use wheels to install python dependencies
-RUN python3 -m venv .venv \
+# The two wheel directories are bind-mounted rather than COPYed. A COPY commits
+# them to their own layer, and the `rm -rf` that used to follow could only write a
+# whiteout on top -- it cannot remove a committed layer, so both wheel layers
+# shipped in every published image. A bind mount is never committed to a layer.
+RUN --mount=type=bind,from=python-build-stage,source=/usr/src/app/wheels,target=/wheels \
+    --mount=type=bind,from=python-build-stage,source=/usr/src/app/wheels_checkov,target=/wheels_checkov \
+    python3 -m venv .venv \
     && source /.venv/bin/activate \
     && pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
-	&& rm -rf /wheels/ && rm -rf /tmp \
+	&& rm -rf /tmp \
     && deactivate \
     && python3 -m venv .venv_checkov \
     && source /.venv_checkov/bin/activate \
     && pip install --no-cache-dir --no-index --find-links=/wheels_checkov/ /wheels_checkov/* \
-	&& rm -rf /wheels_checkov/ && rm -rf /tmp \
+	&& rm -rf /tmp \
     && deactivate \
     # Hack because Python's find_library doesn't work on Alpine
     && sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" .venv/lib/python3.14/site-packages/oscrypto/_openssl/_libcrypto_cffi.py \
