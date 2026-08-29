@@ -26,6 +26,7 @@ RUN wget --no-verbose https://github.com/Checkmarx/kics/archive/refs/tags/v${KIC
 # Python run stage
 FROM python:3.14-alpine AS python-run-stage
 
+ARG BETTERLEAKS_VERSION=1.8.1
 ARG GITLEAKS_VERSION=8.30.1
 ARG GRYPE_VERSION=0.116.0
 ARG KICS_VERSION=2.1.20
@@ -75,6 +76,10 @@ RUN source /.venv/bin/activate \
     && pip install --no-cache-dir ./drheader-1.7.0-py2.py3-none-any.whl \
     && deactivate
 
+# install Betterleaks from Github
+WORKDIR /usr/local/betterleaks
+RUN wget --no-verbose https://github.com/betterleaks/betterleaks/releases/download/v${BETTERLEAKS_VERSION}/betterleaks_${BETTERLEAKS_VERSION}_linux_x64.tar.gz -O - | tar -zxf -
+
 # install GitLeaks from Github
 WORKDIR /usr/local/gitleaks
 RUN wget --no-verbose https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz -O - | tar -zxf -
@@ -98,7 +103,7 @@ WORKDIR /usr/local/tfsec
 RUN wget https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 && chmod ugo+x ./tfsec-linux-amd64 && mv ./tfsec-linux-amd64 ./tfsec
 
 # eslint needs npm
-# gitleaks needs git
+# betterleaks and gitleaks need git
 # trivy needs docker
 RUN apk add --no-cache npm git docker-cli
 
@@ -113,7 +118,7 @@ COPY vulnerability_scanner/ ./
 # Copy entrypoints and set PATH
 WORKDIR /entrypoints
 COPY ./docker/entrypoints/ ./
-ENV PATH="/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/tfsec:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
+ENV PATH="/usr/local/betterleaks:/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/tfsec:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
 
 WORKDIR /
 
