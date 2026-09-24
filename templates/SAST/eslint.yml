@@ -1,6 +1,6 @@
 .eslint:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners:2026_08
+    name: ghcr.io/secobserve/secobserve-scanners:2026_09
   stage: test
   variables:
     FURTHER_PARAMETERS: ""

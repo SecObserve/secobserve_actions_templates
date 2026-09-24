@@ -24,7 +24,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_08'
+  image: 'docker://ghcr.io/secobserve/secobserve-scanners:2026_09'
   entrypoint: '/entrypoints/entrypoint_upload_sbom.sh'
   env:
     SO_API_BASE_URL: ${{ inputs.so_api_base_url }}
