@@ -52,17 +52,3 @@ jobs:
             CREATED=${{ env.CREATED }}
             REVISION=${{ github.sha }}
             VERSION=${{ github.event.inputs.release }}
-      -
-        name: Build and push ZAP
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          file: ./docker_zap//Dockerfile
-          push: true
-          tags: |
-            ghcr.io/secobserve/secobserve-scanners-zap:${{ github.event.inputs.release }}
-            ghcr.io/secobserve/secobserve-scanners-zap:latest
-          build-args: |
-            CREATED=${{ env.CREATED }}
-            REVISION=${{ github.sha }}
-            VERSION=${{ github.event.inputs.release }}

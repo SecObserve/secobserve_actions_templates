@@ -45,15 +45,3 @@ jobs:
             CREATED=${{ env.CREATED }}
             REVISION=${{ github.sha }}
             VERSION=dev
-      -
-        name: Build and push ZAP
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          file: ./docker_zap//Dockerfile
-          push: true
-          tags: ghcr.io/secobserve/secobserve-scanners-zap:dev
-          build-args: |
-            CREATED=${{ env.CREATED }}
-            REVISION=${{ github.sha }}
-            VERSION=dev
