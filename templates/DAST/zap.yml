@@ -1,6 +1,6 @@
 .zap:
   image:
-    name: ghcr.io/secobserve/secobserve-scanners-zap:2026_08
+    name: ghcr.io/secobserve/secobserve-scanners-zap:2026_09
   stage: post_deploy
   variables:
     GIT_STRATEGY: none

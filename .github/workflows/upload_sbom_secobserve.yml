@@ -1,0 +1,35 @@
+name: Test dev docker image
+
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  upload_sbom:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: dev
+      -
+        name: Download SBOM of latest release
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=$(gh release view --repo SecObserve/SecObserve --json tagName -q .tagName)
+          VERSION=${TAG#v}
+          gh release download "$TAG" --repo SecObserve/SecObserve --pattern "sbom_${VERSION}.json"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      -
+        name: Upload SBOM
+        uses: ./dev/actions/upload_sbom
+        with:
+          so_api_base_url: ${{ secrets.SO_API_BASE_URL }}
+          so_api_token: ${{ secrets.SO_API_TOKEN }}
+          so_product_name: ${{ secrets.SO_PRODUCT_NAME }}
+          so_branch_name: ${{ steps.release.outputs.version }}
+          so_file_name: sbom_${{ steps.release.outputs.version }}.json
