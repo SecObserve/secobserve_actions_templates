@@ -33,3 +33,10 @@ jobs:
           so_product_name: ${{ secrets.SO_PRODUCT_NAME }}
           so_branch_name: ${{ steps.release.outputs.version }}
           so_file_name: sbom_${{ steps.release.outputs.version }}.json
+      -
+        name: Check security gate
+        uses: ./dev/actions/check_security_gate
+        with:
+          so_api_base_url: ${{ secrets.SO_API_BASE_URL }}
+          so_api_token: ${{ secrets.SO_API_TOKEN }}
+          so_product_name: ${{ secrets.SO_PRODUCT_NAME }}
