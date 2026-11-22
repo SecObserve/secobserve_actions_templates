@@ -12,9 +12,9 @@ COPY docker/requirements_checkov.txt .
 RUN pip wheel --wheel-dir /usr/src/app/wheels_checkov -r ./requirements_checkov.txt
 
 # Go build stage for KICS
-FROM golang:1.27.2-alpine AS go-build-stage
+FROM golang:1.27.4-alpine AS go-build-stage
 
-ARG KICS_VERSION=2.2.0
+ARG KICS_VERSION=2.2.1
 
 # Install kics from GitHub
 WORKDIR /usr/local/kics
@@ -26,12 +26,10 @@ RUN wget --no-verbose https://github.com/Checkmarx/kics/archive/refs/tags/v${KIC
 # Python run stage
 FROM python:3.14-alpine AS python-run-stage
 
-ARG BETTERLEAKS_VERSION=1.9.0
-ARG GITLEAKS_VERSION=8.30.1
-ARG GRYPE_VERSION=0.120.1
-ARG KICS_VERSION=2.2.0
-ARG TRIVY_VERSION=0.75.0
-ARG TFSEC_VERSION=1.28.14
+ARG BETTERLEAKS_VERSION=1.10.1
+ARG GRYPE_VERSION=0.122.1
+ARG KICS_VERSION=2.2.1
+ARG TRIVY_VERSION=0.76.2
 
 ARG CREATED
 ARG REVISION
@@ -80,10 +78,6 @@ RUN source /.venv/bin/activate \
 WORKDIR /usr/local/betterleaks
 RUN wget --no-verbose https://github.com/betterleaks/betterleaks/releases/download/v${BETTERLEAKS_VERSION}/betterleaks_${BETTERLEAKS_VERSION}_linux_x64.tar.gz -O - | tar -zxf -
 
-# install GitLeaks from Github
-WORKDIR /usr/local/gitleaks
-RUN wget --no-verbose https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz -O - | tar -zxf -
-
 # install Grype from Github
 WORKDIR /usr/local/grype
 RUN wget --no-verbose https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz -O - | tar -zxf -
@@ -98,12 +92,8 @@ COPY --from=go-build-stage /usr/local/kics/kics-${KICS_VERSION}/assets/libraries
 WORKDIR /usr/local/trivy
 RUN wget --no-verbose https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz -O - | tar -zxf -
 
-# Install tfsec from GitHub
-WORKDIR /usr/local/tfsec
-RUN wget https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 && chmod ugo+x ./tfsec-linux-amd64 && mv ./tfsec-linux-amd64 ./tfsec
-
 # eslint needs npm
-# betterleaks and gitleaks need git
+# betterleaks needs git
 # trivy needs docker
 RUN apk add --no-cache npm git docker-cli
 
@@ -118,7 +108,7 @@ COPY vulnerability_scanner/ ./
 # Copy entrypoints and set PATH
 WORKDIR /entrypoints
 COPY ./docker/entrypoints/ ./
-ENV PATH="/usr/local/betterleaks:/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/tfsec:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
+ENV PATH="/usr/local/betterleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
 
 WORKDIR /
 
