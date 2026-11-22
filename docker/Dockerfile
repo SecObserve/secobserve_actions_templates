@@ -31,7 +31,6 @@ ARG GITLEAKS_VERSION=8.30.1
 ARG GRYPE_VERSION=0.120.1
 ARG KICS_VERSION=2.2.0
 ARG TRIVY_VERSION=0.75.0
-ARG TFSEC_VERSION=1.28.14
 
 ARG CREATED
 ARG REVISION
@@ -98,10 +97,6 @@ COPY --from=go-build-stage /usr/local/kics/kics-${KICS_VERSION}/assets/libraries
 WORKDIR /usr/local/trivy
 RUN wget --no-verbose https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz -O - | tar -zxf -
 
-# Install tfsec from GitHub
-WORKDIR /usr/local/tfsec
-RUN wget https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 && chmod ugo+x ./tfsec-linux-amd64 && mv ./tfsec-linux-amd64 ./tfsec
-
 # eslint needs npm
 # betterleaks and gitleaks need git
 # trivy needs docker
@@ -118,7 +113,7 @@ COPY vulnerability_scanner/ ./
 # Copy entrypoints and set PATH
 WORKDIR /entrypoints
 COPY ./docker/entrypoints/ ./
-ENV PATH="/usr/local/betterleaks:/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/tfsec:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
+ENV PATH="/usr/local/betterleaks:/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/importer/bin:/usr/local/vulnerability_scanner/bin:$PATH"
 
 WORKDIR /
 
